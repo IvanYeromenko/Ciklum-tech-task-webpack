@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="./styles.css">
+    <title>Welcome</title>
+</head>
+
+<body>
+    <div class="button-select">
+        <h3>Calender</h3>
+        <select class="choose-name">
+            <option value="all">Maria, Bob, Alex</option>
+            <option value="maria">Maria</option>
+            <option value="bob">Bob</option>
+            <option value="alex">Alex</option>
+        </select>
+        <form action="./create-event.html" id="create-event">
+            <button>New event +</button>
+        </form>
+    </div>
+    <div class="schedule-container">
+
+        <table class="schedule">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Mon</th>
+                    <th>Tue</th>
+                    <th>Wed</th>
+                    <th>Thu</th>
+                    <th>Fri</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>10:00</td>
+                    <td id="mon-10"></td>
+                    <td id="tue-10"></td>
+                    <td id="wed-10"></td>
+                    <td id="thu-10"></td>
+                    <td id="fri-10"></td>
+                </tr>
+                <tr>
+                    <td>11:00</td>
+                    <td id="mon-11"></td>
+                    <td id="tue-11"></td>
+                    <td id="wed-11"></td>
+                    <td id="thu-11"></td>
+                    <td id="fri-11"></td>
+                </tr>
+                <tr>
+                    <td>12:00</td>
+                    <td id="mon-12"></td>
+                    <td id="tue-12"></td>
+                    <td id="wed-12"></td>
+                    <td id="thu-12"></td>
+                    <td id="fri-12"></td>
+                </tr>
+                <tr>
+                    <td>13:00</td>
+                    <td id="mon-13"></td>
+                    <td id="tue-13"></td>
+                    <td id="wed-13"></td>
+                    <td id="thu-13"></td>
+                    <td id="fri-13"></td>
+                </tr>
+                <tr>
+                    <td>14:00</td>
+                    <td id="mon-14"></td>
+                    <td id="tue-14"></td>
+                    <td id="wed-14"></td>
+                    <td id="thu-14"></td>
+                    <td id="fri-14"></td>
+                </tr>
+                <tr>
+                    <td>15:00</td>
+                    <td id="mon-15"></td>
+                    <td id="tue-15"></td>
+                    <td id="wed-15"></td>
+                    <td id="thu-15"></td>
+                    <td id="fri-15"></td>
+                </tr>
+                <tr>
+                    <td>16:00</td>
+                    <td id="mon-16"></td>
+                    <td id="tue-16"></td>
+                    <td id="wed-16"></td>
+                    <td id="thu-16"></td>
+                    <td id="fri-16"></td>
+                </tr>
+                <tr>
+                    <td>17:00</td>
+                    <td id="mon-17"></td>
+                    <td id="tue-17"></td>
+                    <td id="wed-17"></td>
+                    <td id="thu-17"></td>
+                    <td id="fri-17"></td>
+                </tr>
+                <tr>
+                    <td>18:00</td>
+                    <td id="mon-18"></td>
+                    <td id="tue-18"></td>
+                    <td id="wed-18"></td>
+                    <td id="thu-18"></td>
+                    <td id="fri-18"></td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+    <script type="text/javascript">
+        if (localStorage.getItem("schedule") == null) {
+    let schedule = {
+        mon: {
+            10: false,
+            11: false,
+            12: false,
+            13: false,
+            14: false,
+            15: false,
+            16: false,
+            17: false,
+            18: false
+        },
+        tue: {
+            10: false,
+            11: false,
+            12: false,
+            13: false,
+            14: false,
+            15: false,
+            16: false,
+            17: false,
+            18: false
+        },
+        wed: {
+            10: false,
+            11: false,
+            12: false,
+            13: false,
+            14: false,
+            15: false,
+            16: false,
+            17: false,
+            18: false
+        },
+        thu: {
+            10: false,
+            11: false,
+            12: false,
+            13: false,
+            14: false,
+            15: false,
+            16: false,
+            17: false,
+            18: false
+        },
+        fri: {
+            10: false,
+            11: false,
+            12: false,
+            13: false,
+            14: false,
+            15: false,
+            16: false,
+            17: false,
+            18: false
+        }
+    }
+    localStorage.setItem("schedule", JSON.stringify(schedule));
+    console.log(array);
+}
+array = JSON.parse(localStorage.getItem("schedule"));
+for (key in array) {
+    let elem = array[key];
+    for (keys in elem) {
+        if (elem[keys] != false) {
+            document.getElementById(`${key}-${keys}`).classList.add('green');
+            document.getElementById(`${key}-${keys}`).innerHTML = `${elem[keys][1]} <button class="delete-button" data-id="${key}-${keys}">X</button>`;
+            deleteBtn()
+        }
+    }
+}
+console.log(array);
+function allRecords() {
+    for (key in array) {
+        let elem = array[key];
+        for (keys in elem) {
+            if (elem[keys] != false) {
+                document.getElementById(`${key}-${keys}`).classList.add('green');
+                document.getElementById(`${key}-${keys}`).innerHTML = `${elem[keys][1]} <button class="delete-button" data-id="${key}-${keys}">X</button>`;
+            }
+        }
+    }
+}
+function filterRecord(e) {
+    for (key in array) {
+        let elem = array[key];
+        for (keys in elem) {
+            if (elem[keys] != false) {
+                if (elem[keys][0] == e) {
+                    document.getElementById(`${key}-${keys}`).classList.add('green');
+                    document.getElementById(`${key}-${keys}`).innerHTML = `${elem[keys][1]} <button class="delete-button" data-id="${key}-${keys}">X</button>`;
+                }
+            }
+        }
+    }
+}
+document.querySelector('.choose-name').onchange = (e) => {
+    console.log(e.target.value);
+    document.querySelectorAll('.green').forEach((elem) => {
+        elem.classList.remove('green');
+        elem.innerHTML = '';
+    })
+    if (e.target.value == 'all') {
+        allRecords();
+        deleteBtn()
+    } else {
+        filterRecord(e.target.value);
+        deleteBtn()
+    }
+}
+
+function doAll() {
+    if (document.querySelector('.choose-name').value == 'all') {
+        allRecords();
+        deleteBtn()
+    } else {
+        filterRecord(document.querySelector('.choose-name').value);
+        deleteBtn()
+    }
+}
+
+function deleteBtn() {
+    document.querySelectorAll('.delete-button').forEach((elem) => {
+        elem.onclick = () => {
+            const result = confirm('Вы действительно хотите удалить запись?');
+            if (result) {
+                let arrayDel = JSON.parse(localStorage.getItem("schedule"));
+                let ourElem = elem.getAttribute('data-id');
+                arrayDel[ourElem.substring(0, 3)][ourElem.substring(4)] = false;
+                document.querySelector(`#${ourElem.substring(0, 3)}-${ourElem.substring(4)}`).classList.remove('green');
+                document.querySelector(`#${ourElem.substring(0, 3)}-${ourElem.substring(4)}`).innerHTML = '';
+                localStorage.setItem("schedule", JSON.stringify(arrayDel));
+            } else {
+                console.log('Вы не захотели удалять запись');
+            }
+        }
+    })
+}
+    </script>
+</body>
+</html>
